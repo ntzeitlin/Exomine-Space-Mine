@@ -21,13 +21,14 @@ export const getFacilitiesList = async () => {
     let facilitiesHTML = `<select id='facility'>
                                 <option value='0'> Choose a facility:</option>
                          `
-    
-    const facilitiesStringArray = facilities.map(
+    const facilitiesStringArray = facilities.filter(
         (facility) => {
-            return `<option value=${facility.id}>${facility.name}</option>`
+            facility.activestatus === true
         }
-    )
-
+    ).map((facility) => {
+        return `<option value=${facility.id}>${facility.name}</option>`
+    })
+   
     facilitiesHTML += facilitiesStringArray.join("")
     facilitiesHTML += `</select>`
 
