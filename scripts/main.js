@@ -1,3 +1,5 @@
+import { generatePurchaseButton } from "./PurchaseButton.js"
+import { generateShoppingCart } from "./SpaceCart.js"
 
 const mainContainerElement = document.querySelector("#container")
 
@@ -5,8 +7,8 @@ const governorListHTML = ""
 const colonyMineralsHTML = ""
 const facilitiesListHTML = ""
 const facilityMineralsHTML = ""
-const shoppingCartHTML = ""
-const purchaseButton = ""
+const shoppingCartHTML = await generateShoppingCart()
+const purchaseButton = generatePurchaseButton()
 
 const render = () => {
     const compositeHTML =
