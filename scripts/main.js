@@ -1,9 +1,10 @@
+import { getFacilitiesList } from "./facilities"
 
 const mainContainerElement = document.querySelector("#container")
 
 const governorListHTML = ""
 const colonyMineralsHTML = ""
-const facilitiesListHTML = ""
+const facilitiesListHTML = await getFacilitiesList()
 const facilityMineralsHTML = ""
 const shoppingCartHTML = ""
 const purchaseButton = ""
