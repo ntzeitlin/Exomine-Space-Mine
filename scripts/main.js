@@ -1,3 +1,4 @@
+import { getFacilitiesList } from "./facilities.js"
 import { generatePurchaseButton } from "./PurchaseButton.js"
 import { generateShoppingCart } from "./SpaceCart.js"
 
