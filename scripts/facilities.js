@@ -23,7 +23,7 @@ export const getFacilitiesList = async () => {
                          `
     const facilitiesStringArray = facilities.filter(
         (facility) => {
-            facility.activestatus === true
+            return facility.activestatus === true
         }
     ).map((facility) => {
         return `<option value=${facility.id}>${facility.name}</option>`
