@@ -1,4 +1,4 @@
-import { getFacilitiesList } from "./facilities"
+import { getFacilitiesList } from "./facilities.js"
 
 const mainContainerElement = document.querySelector("#container")
 
