@@ -1,4 +1,4 @@
-const transientState = new Map()
+export const transientState = new Map()
 
 const resetTransientState = () => {
     transientState.set("id", 0)
