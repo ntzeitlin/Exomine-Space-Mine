@@ -85,23 +85,18 @@ export const purchaseMineral = async () => {
     const currentFacilityMineral = facilityMineralData.find((facilityMineral) => parseInt(facilityMineral.facilityId) === currentFacilityId
         && parseInt(facilityMineral.mineralId) === currentMineralId)
 
-    // BUILD DATA OBJECTS TO EITHER PUT OR POST
 
-    const colonyMineralDataPUT = {
-        "id": filteredColonyMineralData[0].id,
-        "quantity": filteredColonyMineralData[0].quantity + 1,
-        "colonyId": currentColonyId,
-        "mineralId": currentMineralId
-    }
+    //double check variable values
+    console.log(filteredColonyMineralData)
+    console.log(currentFacilityMineral)
+    // console.log("filteredColonyMineralData[0].id", filteredColonyMineralData[0].id)
+    // console.log("filteredColonyMineralData[0].quantity + 1", filteredColonyMineralData[0].quantity + 1)
+    // console.log("currentColonyId", currentColonyId)
+    // console.log("currentMineralId", currentMineralId)
+    // console.log("currentFacilityMineral.id", currentFacilityMineral.id)
+    // console.log("currentFacilityId", currentFacilityId)
 
-    const colonyMineralDataPOST = {
-        "id": filteredColonyMineralData[0].id,
-        "quantity": 1,
-        "colonyId": currentColonyId,
-        "mineralId": currentMineralId
-    }
-
-    const facilityMineralDataPOST = {
+    const facilityMineralDataPUT = {
         "id": currentFacilityMineral.id,
         "quantity": currentFacilityMineral.quantity - 1,
         "mineralId": currentMineralId,
@@ -111,14 +106,33 @@ export const purchaseMineral = async () => {
     // Check whether Governor's colony currently has current materials
     // If it exists, update database
     if (filteredColonyMineralData.length > 0) {
+        const colonyMineralDataPUT = {
+            "id": filteredColonyMineralData[0].id,
+            "quantity": filteredColonyMineralData[0].quantity + 1,
+            "colonyId": currentColonyId,
+            "mineralId": currentMineralId
+        }
+
         // PUT TO DATABASE
+        let putColonyURL = `http://localhost:8088/colonyminerals/${filteredColonyMineralData[0].id}`
+        putData(colonyMineralDataPUT, putColonyURL)
+
+        let putFacilityURL = `http://localhost:8088/facilityminerals/${currentFacilityMineral.id}`
+        putData(facilityMineralDataPUT, putFacilityURL)
     }
 
     // if the colony currently has no material
     if (filteredColonyMineralData.length === 0) {
-        // POST TO DATABASE
-        // PUT facilityminerals
-        // POST colonyminerals
+        const colonyMineralDataPOST = {
+            "quantity": 1,
+            "colonyId": currentColonyId,
+            "mineralId": currentMineralId
+        }
+        let postColonyURL = "http://localhost:8088/colonyminerals/"
+        postData(colonyMineralDataPOST, postColonyURL)
+
+        let putFacilityURL = `http://localhost:8088/facilityminerals/${currentFacilityMineral.id}`
+        putData(facilityMineralDataPUT, putFacilityURL)
     }
 
 
