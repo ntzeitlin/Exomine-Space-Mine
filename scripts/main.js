@@ -9,7 +9,6 @@ const render = async () => {
     const governorListHTML = ""                                       //moved into the render() to ensure that when the change events occur, the page is updated with the relevant data.
     const colonyMineralsHTML = ""
     const facilitiesListHTML = await getFacilitiesList()
-    debugger
     const facilityMineralsHTML = await getFacilityMineralList()
     const shoppingCartHTML = await generateShoppingCart()
     const purchaseButton = generatePurchaseButton()

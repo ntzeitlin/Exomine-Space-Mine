@@ -18,6 +18,7 @@ resetTransientState()
 export const setTransientState = (propertyType, selectedId) => {
     transientState.set(propertyType, selectedId)
     document.dispatchEvent(new CustomEvent("stateChanged"))
+    console.log(transientState)
 }
 
 export const purchaseMineral = () => {
