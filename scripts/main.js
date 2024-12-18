@@ -1,18 +1,20 @@
-
+import { getFacilitiesList } from "./facilities.js"
+import { getFacilityMineralList } from "./facilitiesMineralsList.js"
 import { generateGovernorList } from "./generateGovernorList.js"
 import { generatePurchaseButton } from "./PurchaseButton.js"
 import { generateShoppingCart } from "./SpaceCart.js"
 
 const mainContainerElement = document.querySelector("#container")
 
-const governorListHTML = await generateGovernorList();
-const colonyMineralsHTML = ""
-const facilitiesListHTML = ""
-const facilityMineralsHTML = ""
-const shoppingCartHTML = await generateShoppingCart()
-const purchaseButton = generatePurchaseButton()
+const render = async () => {
+    const governorListHTML = await generateGovernorList();                                    //moved into the render() to ensure that when the change events occur, the page is updated with the relevant data.
+    const colonyMineralsHTML = ""
+    const facilitiesListHTML = await getFacilitiesList()
+    const facilityMineralsHTML = await getFacilityMineralList()
+    const shoppingCartHTML = await generateShoppingCart()
+    const purchaseButton = generatePurchaseButton()
 
-const render = () => {
+
     const compositeHTML =
         `<h1 id="title">Solar System Mining Marketplace</h1>
       <section class="choices">
@@ -45,6 +47,11 @@ const render = () => {
     mainContainerElement.innerHTML = compositeHTML
 
 }
+
+document.addEventListener("stateChanged", event => {
+    console.log("State of data has changed. Regenerating HTML...")
+    render()
+}) 
 
 render()
 
