@@ -1,5 +1,5 @@
 {
-    "minerals":[
+    "minerals": [
         {
             "id": 1,
             "name": "Iron"
@@ -65,7 +65,7 @@
         {
             "id": 3,
             "name": "Oberon",
-            "activestatus": false
+            "activestatus": true
         },
         {
             "id": 4,
@@ -89,7 +89,7 @@
         {
             "id": 3,
             "name": "Olivia Chen",
-            "activestatus": false,
+            "activestatus": true,
             "colonyId": 4
         },
         {
