@@ -19,6 +19,7 @@ export const getFacilityMineralList = async () => {
         handleMineralChange
     )
 
+
     if(transientState.get("facilityId") > 0 ){
         const facilityMineralsStringArray = facilityMinerals.filter(
             (facilityMineral) => {
@@ -46,6 +47,4 @@ export const getFacilityMineralList = async () => {
     } else {
         return headerHTML
     }
-    
-    
-}
+  
