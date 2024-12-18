@@ -1,0 +1,54 @@
+body {
+    font-family: "Courier New", monospace;
+    color: #7df222;
+    background: black;
+}
+
+.choices {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.options {
+    margin: 20px;
+}
+
+.display {
+    display: flex;
+}
+
+.choices_mineral {
+    margin: 50px;
+    padding: 50px;
+    border: 1px dashed #7df222;
+}
+
+.colonies_list {
+    border: 1px dashed #7df222;
+    padding: 50px;
+    margin: 30px;
+}
+
+.cart {
+    margin: 50px;
+    padding: 50px;
+    border: 1px dashed #7df222;
+}
+
+#purchasebutton {
+    color: #7df222;
+    background: black;
+    box-shadow: 0 0 20px #7df222;
+}
+
+#governor {
+    background: black;
+    color: #7df222;
+    box-shadow: 0 0 20px #7df222;
+}
+
+#facility {
+    background: black;
+    color: #7df222;
+    box-shadow: 0 0 20px #7df222;
+}
