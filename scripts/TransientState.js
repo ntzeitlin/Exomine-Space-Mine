@@ -40,3 +40,6 @@ export const purchaseMineral = () => {
 }
 
 
+//If there is a coloniesMinerals entry that contains the purchased material, increase the value by 1 ton/
+//If there is not a coloniesMinerals entry that contains the correct colony and purchased material, create a new entry that contains the rel information
+
