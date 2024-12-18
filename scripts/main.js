@@ -1,5 +1,6 @@
 import { getFacilitiesList } from "./facilities.js"
 import { getFacilityMineralList } from "./facilitiesMineralsList.js"
+import { generateColonyMineral } from "./generateColonyMineral.js"
 import { generateGovernorList } from "./generateGovernorList.js"
 import { generatePurchaseButton } from "./PurchaseButton.js"
 import { generateShoppingCart } from "./SpaceCart.js"
@@ -8,7 +9,7 @@ const mainContainerElement = document.querySelector("#container")
 
 const render = async () => {
     const governorListHTML = await generateGovernorList();                                    //moved into the render() to ensure that when the change events occur, the page is updated with the relevant data.
-    const colonyMineralsHTML = ""
+    const colonyMineralsHTML = await generateColonyMineral()
     const facilitiesListHTML = await getFacilitiesList()
     const facilityMineralsHTML = await getFacilityMineralList()
     const shoppingCartHTML = await generateShoppingCart()
