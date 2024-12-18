@@ -86,8 +86,6 @@ export const purchaseMineral = async () => {
 
     const postData = async (facilityPostData, colonyPostData) => {
 
-
-
         const responseFacility = await fetch("http://localhost:8088/facilityminerals", {
             method: 'POST',
             headers: {
