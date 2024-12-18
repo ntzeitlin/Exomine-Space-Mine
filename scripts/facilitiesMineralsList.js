@@ -29,7 +29,13 @@ export const getFacilityMineralList = async () => {
                 <input type="radio" name="facilityMineralsAvailable" value=${facilityMineral.mineral.id} selected>${facilityMineral.quantity} tons of ${facilityMineral.mineral.name}</input>
               </div>
                 `
-}})
+        }
+        return `
+              <div>
+                <input type="radio" name="facilityMineralsAvailable" value=${facilityMineral.mineral.id}>${facilityMineral.quantity} tons of ${facilityMineral.mineral.name}</input>
+              </div>
+                `
+    })
     
 
     facilityMineralsHTML += facilityMineralsStringArray.join("")
