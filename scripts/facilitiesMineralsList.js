@@ -23,12 +23,14 @@ export const getFacilityMineralList = async () => {
 
         }
     ).map((facilityMineral) => {
+        if (facilityMineral.facilityId === transientState.get("facilityId")) {
         return `
               <div>
-                <input type="radio" name="facilityMineralsAvailable" value=${facilityMineral.mineral.id}>${facilityMineral.quantity} tons of ${facilityMineral.mineral.name}</input>
+                <input type="radio" name="facilityMineralsAvailable" value=${facilityMineral.mineral.id} selected>${facilityMineral.quantity} tons of ${facilityMineral.mineral.name}</input>
               </div>
                 `
-    })
+}})
+    
 
     facilityMineralsHTML += facilityMineralsStringArray.join("")
     return facilityMineralsHTML
