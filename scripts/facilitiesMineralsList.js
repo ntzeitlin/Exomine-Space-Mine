@@ -19,22 +19,22 @@ export const getFacilityMineralList = async () => {
         handleMineralChange
     )
 
-
+    
     if(transientState.get("facilityId") > 0 ){
         const facilityMineralsStringArray = facilityMinerals.filter(
             (facilityMineral) => {
                 return facilityMineral.facilityId !=0 && facilityMineral.facilityId === transientState.get("facilityId") && facilityMineral.quantity > 0
-    
             }
         ).map((facilityMineral) => {
-            if (facilityMineral.facilityId === transientState.get("facilityId")) {
+            if (facilityMineral.mineralId === transientState.get("mineralId")) {
             headerHTML = `<h2>${facilityMineral.facility.name} Minerals:</h2>`
             return `
                   <div>
-                    <input type="radio" name="facilityMineralsAvailable" value=${facilityMineral.mineral.id} selected>${facilityMineral.quantity} tons of ${facilityMineral.mineral.name}</input>
+                    <input type="radio" name="facilityMineralsAvailable" value=${facilityMineral.mineral.id} checked>${facilityMineral.quantity} tons of ${facilityMineral.mineral.name}</input>
                   </div>
                     `
             }
+            headerHTML = `<h2>${facilityMineral.facility.name} Minerals:</h2>`
             return `
                   <div>
                     <input type="radio" name="facilityMineralsAvailable" value=${facilityMineral.mineral.id}>${facilityMineral.quantity} tons of ${facilityMineral.mineral.name}</input>
@@ -44,7 +44,8 @@ export const getFacilityMineralList = async () => {
     
         facilityMineralsHTML += facilityMineralsStringArray.join("")
         return `${headerHTML} ${facilityMineralsHTML}`
-    } else {
+   
+    }else {
         return headerHTML
     }
-  
+}
