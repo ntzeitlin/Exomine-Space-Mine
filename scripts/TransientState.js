@@ -23,6 +23,7 @@ export const setTransientState = (propertyType, selectedId) => {
     // console.log(transientState)
 }
 
+
 export const purchaseMineral = async () => {
     /*
         Does the chosen governor's colony already own some of this mineral?
@@ -62,33 +63,35 @@ export const purchaseMineral = async () => {
     // BUILD DATA OBJECTS TO EITHER PUT OR POST
 
     const colonyMineralDataPut = `{
-        "id": ${filteredColonyMineralData[0].id},
-        "quantity": ${filteredColonyMineralData[0].quantity + 1},
-        "colonyId": ${currentColonyId},
-        "mineralId": ${currentMineralId}
+        id: ${filteredColonyMineralData[0].id},
+        quantity: ${filteredColonyMineralData[0].quantity + 1},
+        colonyId: ${currentColonyId},
+        mineralId: ${currentMineralId}
     }`
 
     const colonyMineralDataPost = `{
-        "id": ${filteredColonyMineralData[0].id},
-        "quantity": 1,
-        "colonyId": ${currentColonyId},
-        "mineralId": ${currentMineralId}
+        id: ${filteredColonyMineralData[0].id},
+        quantity: 1,
+        colonyId: ${currentColonyId},
+        mineralId: ${currentMineralId}
     }`
 
     const facilityMineralPostData = `{
-        "id": ${currentFacilityMineral.id},
-        "quantity": ${currentFacilityMineral.quantity} - 1,
-        "mineralId": ${currentMineralId},
-        "facilityId": ${currentFacilityId} 
+        id: ${currentFacilityMineral.id},
+        quantity: ${currentFacilityMineral.quantity - 1},
+        mineralId: ${currentMineralId},
+        facilityId: ${currentFacilityId} 
     }`
 
 
     const postData = async (facilityPostData, colonyPostData) => {
 
+
+
         const responseFacility = await fetch("http://localhost:8088/facilityminerals", {
             method: 'POST',
             headers: {
-                'Content-type': 'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(facilityPostData)
         })
@@ -96,7 +99,7 @@ export const purchaseMineral = async () => {
         const responseColony = await fetch("http://localhost:8088/colonyminerals", {
             method: 'POST',
             headers: {
-                'Content-type': 'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(colonyPostData)
         })
@@ -107,7 +110,7 @@ export const purchaseMineral = async () => {
         const responseFacility = await fetch("http://localhost:8088/facilityminerals", {
             method: 'POST',
             headers: {
-                'Content-type': 'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(facilityPostData)
         })
@@ -115,7 +118,7 @@ export const purchaseMineral = async () => {
         const responseColony = await fetch("http://localhost:8088/colonyminerals", {
             method: 'PUT',
             headers: {
-                'Content-type': 'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(colonyPutData)
         })
