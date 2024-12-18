@@ -23,6 +23,31 @@ export const setTransientState = (propertyType, selectedId) => {
     // console.log(transientState)
 }
 
+// post and put data functions
+
+const postData = async (data, url) => {
+
+    const response = await fetch(url, ({
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }))
+
+}
+
+const putData = async (data, url) => {
+
+    const response = await fetch(url, ({
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }))
+}
+
 
 export const purchaseMineral = async () => {
     /*
@@ -62,71 +87,31 @@ export const purchaseMineral = async () => {
 
     // BUILD DATA OBJECTS TO EITHER PUT OR POST
 
-    const colonyMineralDataPut = {
+    const colonyMineralDataPUT = {
         "id": filteredColonyMineralData[0].id,
         "quantity": filteredColonyMineralData[0].quantity + 1,
         "colonyId": currentColonyId,
         "mineralId": currentMineralId
     }
 
-    const colonyMineralDataPost = {
+    const colonyMineralDataPOST = {
         "id": filteredColonyMineralData[0].id,
         "quantity": 1,
         "colonyId": currentColonyId,
         "mineralId": currentMineralId
     }
 
-    const facilityMineralPostData = {
+    const facilityMineralDataPOST = {
         "id": currentFacilityMineral.id,
         "quantity": currentFacilityMineral.quantity - 1,
         "mineralId": currentMineralId,
         "facilityId": currentFacilityId
     }
 
-
-    const postData = async (facilityPostData, colonyPostData) => {
-
-        const responseFacility = await fetch("http://localhost:8088/facilityminerals/", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(facilityPostData)
-        })
-
-        const responseColony = await fetch("http://localhost:8088/colonyminerals/", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(colonyPostData)
-        })
-    }
-
-    const putData = async (facilityPostData, colonyPutData) => {
-
-        const responseFacility = await fetch("http://localhost:8088/facilityminerals/", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(facilityPostData)
-        })
-
-        const responseColony = await fetch("http://localhost:8088/colonyminerals/", {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(colonyPutData)
-        })
-    }
-
     // Check whether Governor's colony currently has current materials
     // If it exists, update database
     if (filteredColonyMineralData.length > 0) {
         // PUT TO DATABASE
-        putData(facilityMineralPostData, colonyMineralDataPut)
     }
 
     // if the colony currently has no material
@@ -134,7 +119,6 @@ export const purchaseMineral = async () => {
         // POST TO DATABASE
         // PUT facilityminerals
         // POST colonyminerals
-        postData(facilityMineralPostData, colonyMineralDataPost)
     }
 
 
