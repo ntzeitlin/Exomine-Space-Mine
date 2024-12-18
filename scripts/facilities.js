@@ -18,7 +18,7 @@ export const getFacilitiesList = async () => {
         handleFacilityChange
     )
 
-    let facilitiesHTML = `<select id='facility' >
+    let facilitiesHTML = `<select id='facility' disabled >
                                 <option value='0'> Choose a facility:</option>
                          `
     const facilitiesStringArray = facilities.filter(
