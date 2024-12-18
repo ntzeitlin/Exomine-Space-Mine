@@ -1,9 +1,11 @@
+
+import { generateGovernorList } from "./generateGovernorList.js"
 import { generatePurchaseButton } from "./PurchaseButton.js"
 import { generateShoppingCart } from "./SpaceCart.js"
 
 const mainContainerElement = document.querySelector("#container")
 
-const governorListHTML = ""
+const governorListHTML = await generateGovernorList();
 const colonyMineralsHTML = ""
 const facilitiesListHTML = ""
 const facilityMineralsHTML = ""
