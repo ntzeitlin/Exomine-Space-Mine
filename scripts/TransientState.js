@@ -35,7 +35,6 @@ export const purchaseMineral = () => {
     */
 
     console.log("PURCHASE MATERIAL TRIGGERED")
-    resetTransientState()
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 

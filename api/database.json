@@ -95,7 +95,7 @@
         {
             "id": 4,
             "name": "Noah Patel",
-            "activestatus": false,
+            "activestatus": true,
             "colonyId": 3
         },
         {
