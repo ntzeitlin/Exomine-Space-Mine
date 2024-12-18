@@ -27,7 +27,6 @@ export const generateGovernorList = async () => {
     .filter((governor) => governor.activestatus === true)
     .map((governor) => {
         if (governor.id === transientState.get("governorId")) {
-            
             return `<option value="${governor.id}"  selected>${governor.name}</option>`
         }
         return `<option value="${governor.id}">${governor.name}</option>`

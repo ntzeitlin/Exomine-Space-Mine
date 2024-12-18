@@ -19,7 +19,7 @@ export const getFacilitiesList = async () => {
         handleFacilityChange
     )
 
-    if(transientState.get("governorId") > 0) {
+    if (transientState.get("governorId") > 0) {
         facilitiesHTML = `<select id='facility' enabled >
                               <option value='0'> Choose a facility:</option>
                             `
@@ -27,18 +27,18 @@ export const getFacilitiesList = async () => {
             (facility) => {
                 return facility.activestatus === true
             }
-            ).map((facility) => {
+        ).map((facility) => {
             if (facility.id === transientState.get("facilityId")) {
                 return `<option value=${facility.id} selected>${facility.name}</option>`
             }
 
             return `<option value=${facility.id}>${facility.name}</option>`
-            })
+        })
         facilitiesHTML += facilitiesStringArray.join("")
         facilitiesHTML += `</select>`
-        
+
         return `${facilitiesHTML}`
-    }else {
+    } else {
         facilitiesHTML = `<select id='facility' disabled >
                                 <option value='0'> Choose a facility:</option>
                          </select>`
