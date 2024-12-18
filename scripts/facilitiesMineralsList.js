@@ -1,11 +1,11 @@
 
 import { getData } from "./Data.js"
-import { setTransientState,transientState } from "./TransientState.js"
+import { setTransientState, transientState } from "./TransientState.js"
 
 const handleMineralChange = (mineralSelectedChangeEvent) => {
-    if(mineralSelectedChangeEvent.target.name === "facilityMineralsAvailable") {
+    if (mineralSelectedChangeEvent.target.name === "facilityMineralsAvailable") {
         const convertedToInteger = parseInt(mineralSelectedChangeEvent.target.value)
-        setTransientState("mineralId",convertedToInteger)
+        setTransientState("mineralId", convertedToInteger)
     }
 }
 
@@ -19,16 +19,16 @@ export const getFacilityMineralList = async () => {
         handleMineralChange
     )
 
-    
-    if(transientState.get("facilityId") > 0 ){
+
+    if (transientState.get("facilityId") > 0) {
         const facilityMineralsStringArray = facilityMinerals.filter(
             (facilityMineral) => {
-                return facilityMineral.facilityId !=0 && facilityMineral.facilityId === transientState.get("facilityId") && facilityMineral.quantity > 0
+                return facilityMineral.facilityId != 0 && facilityMineral.facilityId === transientState.get("facilityId") && facilityMineral.quantity > 0
             }
         ).map((facilityMineral) => {
             if (facilityMineral.mineralId === transientState.get("mineralId")) {
-            headerHTML = `<h2>${facilityMineral.facility.name} Minerals:</h2>`
-            return `
+                headerHTML = `<h2>${facilityMineral.facility.name} Minerals:</h2>`
+                return `
                   <div>
                     <input type="radio" name="facilityMineralsAvailable" value=${facilityMineral.mineral.id} checked>${facilityMineral.quantity} tons of ${facilityMineral.mineral.name}</input>
                   </div>
@@ -41,11 +41,11 @@ export const getFacilityMineralList = async () => {
                   </div>
                     `
         })
-    
+
         facilityMineralsHTML += facilityMineralsStringArray.join("")
         return `${headerHTML} ${facilityMineralsHTML}`
-   
-    }else {
+
+    } else {
         return headerHTML
     }
 }

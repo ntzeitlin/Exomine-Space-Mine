@@ -34,6 +34,23 @@ export const purchaseMineral = () => {
         Only the foolhardy try to solve this problem with code.
     */
 
+    // Get current colony's id from transient state
+    // Get current facility's id from transient state
+    // getData from the facilityminerals and colonyminerals databases
+    // filter the Data using the transient state ids
+    // Check whether Governor's colony currently has material
+    // if No, POST to database.
+    // if Yes, PUT to database.
+    // add 1 to colonyminerals, subtract 1 from facilityminerals
+    
+    /*
+    const postData = async () => {
+        const response = await fetch("http://localhost:8088/")
+        }
+    */
+
+
+
     console.log("PURCHASE MATERIAL TRIGGERED")
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
