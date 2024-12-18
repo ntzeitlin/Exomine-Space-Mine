@@ -61,21 +61,21 @@ export const purchaseMineral = async () => {
 
     // BUILD DATA OBJECTS TO EITHER PUT OR POST
 
-    colonyMineralDataPut = `{
+    const colonyMineralDataPut = `{
         "id": ${filteredColonyMineralData[0].id},
         "quantity": ${filteredColonyMineralData[0].quantity + 1},
         "colonyId": ${currentColonyId},
         "mineralId": ${currentMineralId}
     }`
 
-    colonyMineralDataPost = `{
+    const colonyMineralDataPost = `{
         "id": ${filteredColonyMineralData[0].id},
         "quantity": 1,
         "colonyId": ${currentColonyId},
         "mineralId": ${currentMineralId}
     }`
 
-    facilityMineralPostData = `{
+    const facilityMineralPostData = `{
         "id": ${currentFacilityMineral.id},
         "quantity": ${currentFacilityMineral.quantity} - 1,
         "mineralId": ${currentMineralId},
@@ -83,12 +83,49 @@ export const purchaseMineral = async () => {
     }`
 
 
+    const postData = async (facilityPostData, colonyPostData) => {
 
-    // Check whether Governor's colony currently has current material
+        const responseFacility = await fetch("http://localhost:8088/facilityminerals", {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(facilityPostData)
+        })
+
+        const responseColony = await fetch("http://localhost:8088/colonyminerals", {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(colonyPostData)
+        })
+    }
+
+    const putData = async (facilityPostData, colonyPutData) => {
+
+        const responseFacility = await fetch("http://localhost:8088/facilityminerals", {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(facilityPostData)
+        })
+
+        const responseColony = await fetch("http://localhost:8088/colonyminerals", {
+            method: 'PUT',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(colonyPutData)
+        })
+    }
+
+    // Check whether Governor's colony currently has current materials
     // If it exists, update database
     if (filteredColonyMineralData.length > 0) {
         // PUT TO DATABASE
-        // PUT BOTH colonyminerals AND facilityminerals
+        putData(facilityMineralPostData, colonyMineralDataPut)
     }
 
     // if the colony currently has no material
@@ -96,24 +133,8 @@ export const purchaseMineral = async () => {
         // POST TO DATABASE
         // PUT facilityminerals
         // POST colonyminerals
+        postData(facilityMineralPostData, colonyMineralDataPost)
     }
-
-    // if Yes, PUT to database.
-    // add 1 to colonyminerals, subtract 1 from facilityminerals
-
-    /*
-    const postData = async () => {
-
-
-        const response = await fetch("http://localhost:8088/colonyminerals", {
-            method: 'PUT',
-            headers: {
-            'Content-type': 'application/json'
-            },
-            body: JSON.stringify()
-        })
-        }
-    */
 
 
 
