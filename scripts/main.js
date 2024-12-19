@@ -8,7 +8,7 @@ import { generateShoppingCart } from "./SpaceCart.js"
 
 const mainContainerElement = document.querySelector("#container")
 
-const render = async () => {
+export const render = async () => {
   const governorListHTML = await generateGovernorList();                                    //moved into the render() to ensure that when the change events occur, the page is updated with the relevant data.
   const colonyMineralsHTML = await generateColonyMineral()
   const facilitiesListHTML = await getFacilitiesList()

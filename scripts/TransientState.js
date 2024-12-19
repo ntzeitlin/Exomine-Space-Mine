@@ -10,6 +10,7 @@ export const resetTransientState = () => {
     transientState.set("colonyId", 0)
     transientState.set("mineralId", 0)
     transientState.set("facilityId", 0)
+    document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
 // reset selected mineral after purchase
