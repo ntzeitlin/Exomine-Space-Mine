@@ -9,29 +9,31 @@ const handleGovernorChange = async (governorSelectedChangeEvent) => {
 
         setTransientState("governorId", convertedToInteger)
         setTransientState("colonyId", foundGov.colonyId)
-        
+
         document.getElementById('facility').removeAttribute("disabled")
-        }
     }
+}
 
 export const generateGovernorList = async () => {
     const govData = await getData("governors");
 
-    
+
     let govListHTML = ""
-    
+
     govListHTML += '<select id="governor">'
     govListHTML += '<option value="0">Choose a governor</option>'
-    
+
     const governorArray = govData
-    .filter((governor) => governor.activestatus === true)
-    .map((governor) => {
-        if (governor.id === transientState.get("governorId")) {
-            return `<option value="${governor.id}"  selected>${governor.name}</option>`
+        .filter((governor) => governor.activestatus === true)
+        .map((governor) => {
+            if (governor.id === transientState.get("governorId")) {
+                let govimgelement = document.getElementById("gov__img")
+                govimgelement.innerHTML = `<img src="./images/govs/earth.png"></img>`
+                return `<option value="${governor.id}"  selected>${governor.name}</option>`
+            }
+            return `<option value="${governor.id}">${governor.name}</option>`
         }
-        return `<option value="${governor.id}">${governor.name}</option>`
-    }
-)
+        )
 
     govListHTML += governorArray.join("")
     govListHTML += "</select>"

@@ -32,6 +32,11 @@ const render = async () => {
         </article>
       </section>
 
+      <section class="display__images">
+        <div id="gov__img"></div>
+        <div id="facility__img"></div>
+      </section>
+
       <section class="display">
         <article class="choices_mineral options">
             ${facilityMineralsHTML}
@@ -50,7 +55,7 @@ const render = async () => {
 document.addEventListener("stateChanged", event => {
     console.log("State of data has changed. Regenerating HTML...")
     render()
-}) 
+})
 
 render()
 
