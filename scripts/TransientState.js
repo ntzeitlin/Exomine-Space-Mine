@@ -1,7 +1,9 @@
 import { getData } from "./Data.js"
 
+// Create transientState map to capture state changes
 export const transientState = new Map()
 
+// function to set all transient state properties
 const resetTransientState = () => {
     transientState.set("id", 0)
     transientState.set("governorId", 0)
@@ -10,13 +12,15 @@ const resetTransientState = () => {
     transientState.set("facilityId", 0)
 }
 
+// reset selected mineral after purchase
+const resetTransientStateAfterPurchase = () => {
+    transientState.set("mineralId", 0)
+}
+
+// initialize transient state properties 
 resetTransientState()
 
-// export const setFacility = (facilityId) => {
-//     state.selectedFacility = facilityId
-//     document.dispatchEvent(new CustomEvent("stateChanged"))
-// }
-
+// declare TransientState setter function with two parameters
 export const setTransientState = (propertyType, selectedId) => {
     transientState.set(propertyType, selectedId)
     document.dispatchEvent(new CustomEvent("stateChanged"))
@@ -24,7 +28,6 @@ export const setTransientState = (propertyType, selectedId) => {
 }
 
 // post and put data functions
-
 const postData = async (data, url) => {
 
     const response = await fetch(url, ({
@@ -49,18 +52,8 @@ const putData = async (data, url) => {
 }
 
 
+// Purchase Mineral Function
 export const purchaseMineral = async () => {
-    /*
-        Does the chosen governor's colony already own some of this mineral?
-            - If yes, what should happen?
-            - If no, what should happen?
-
-        Defining the algorithm for this method is traditionally the hardest
-        task for teams during this group project. It will determine when you
-        should use the method of POST, and when you should use PUT.
-
-        Only the foolhardy try to solve this problem with code.
-    */
 
     // Get current colony's id from transient state
     const currentColonyId = transientState.get("colonyId")
@@ -78,65 +71,60 @@ export const purchaseMineral = async () => {
     const facilityMineralData = await getData("facilityminerals")
 
     // find colonies with match to current colonyId and current selected mineral,
-    // should return 0 or 1 element in an array
+    // should return 0 or 1 element in an array. If no element, then doesn't exist in database and will need to POST
+    // if 1 element, then already exists in database and will need to PUT to entry's endpoint/id
+
     const filteredColonyMineralData = colonyMineralData.filter((colonyMineral) => parseInt(colonyMineral.colonyId) === currentColonyId
         && parseInt(colonyMineral.mineralId) === currentMineralId)
 
     const currentFacilityMineral = facilityMineralData.find((facilityMineral) => parseInt(facilityMineral.facilityId) === currentFacilityId
         && parseInt(facilityMineral.mineralId) === currentMineralId)
 
-
-    //double check variable values
-    console.log(filteredColonyMineralData)
-    console.log(currentFacilityMineral)
-    // console.log("filteredColonyMineralData[0].id", filteredColonyMineralData[0].id)
-    // console.log("filteredColonyMineralData[0].quantity + 1", filteredColonyMineralData[0].quantity + 1)
-    // console.log("currentColonyId", currentColonyId)
-    // console.log("currentMineralId", currentMineralId)
-    // console.log("currentFacilityMineral.id", currentFacilityMineral.id)
-    // console.log("currentFacilityId", currentFacilityId)
-
     const facilityMineralDataPUT = {
-        "id": currentFacilityMineral.id,
-        "quantity": currentFacilityMineral.quantity - 1,
+        "id": (currentFacilityMineral.id ? currentFacilityMineral.id : 0),
+        "quantity": (currentFacilityMineral.quantity != 0 ? currentFacilityMineral.quantity - 1 : 0), // ternary operator to ensure quantity doesnt go negative
         "mineralId": currentMineralId,
         "facilityId": currentFacilityId
     }
 
-    // Check whether Governor's colony currently has current materials
-    // If it exists, update database
+    // Check whether Governor's colony currently has an object in the array
+    // If it exists, update database with a PUT.
     if (filteredColonyMineralData.length > 0) {
+
         const colonyMineralDataPUT = {
             "id": filteredColonyMineralData[0].id,
-            "quantity": filteredColonyMineralData[0].quantity + 1,
+            "quantity": (currentFacilityMineral.quantity != 0 ? filteredColonyMineralData[0].quantity + 1 : filteredColonyMineralData[0].quantity), // ternary operate to ensure you cannot continue increasing quantity in colony when facility runs out
             "colonyId": currentColonyId,
             "mineralId": currentMineralId
         }
 
         // PUT TO DATABASE
-        let putColonyURL = `http://localhost:8088/colonyminerals/${filteredColonyMineralData[0].id}`
+        const putColonyURL = `http://localhost:8088/colonyminerals/${filteredColonyMineralData[0].id}`
         putData(colonyMineralDataPUT, putColonyURL)
 
-        let putFacilityURL = `http://localhost:8088/facilityminerals/${currentFacilityMineral.id}`
+        const putFacilityURL = `http://localhost:8088/facilityminerals/${currentFacilityMineral.id}`
         putData(facilityMineralDataPUT, putFacilityURL)
     }
 
     // if the colony currently has no material
     if (filteredColonyMineralData.length === 0) {
+
         const colonyMineralDataPOST = {
             "quantity": 1,
             "colonyId": currentColonyId,
             "mineralId": currentMineralId
         }
-        let postColonyURL = "http://localhost:8088/colonyminerals/"
+
+        // POST to database
+        const postColonyURL = "http://localhost:8088/colonyminerals/"
         postData(colonyMineralDataPOST, postColonyURL)
 
-        let putFacilityURL = `http://localhost:8088/facilityminerals/${currentFacilityMineral.id}`
+        const putFacilityURL = `http://localhost:8088/facilityminerals/${currentFacilityMineral.id}`
         putData(facilityMineralDataPUT, putFacilityURL)
     }
 
 
-
+    resetTransientStateAfterPurchase()
     console.log("PURCHASE MATERIAL TRIGGERED")
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
