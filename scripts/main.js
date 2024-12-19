@@ -2,44 +2,48 @@ import { getFacilitiesList } from "./facilities.js"
 import { getFacilityMineralList } from "./facilitiesMineralsList.js"
 import { generateColonyMineral } from "./generateColonyMineral.js"
 import { generateGovernorList } from "./generateGovernorList.js"
+import { generateFacilityImage, generateGovImage } from "./generateImages.js"
 import { generatePurchaseButton } from "./PurchaseButton.js"
 import { generateShoppingCart } from "./SpaceCart.js"
 
 const mainContainerElement = document.querySelector("#container")
 
 const render = async () => {
-    const governorListHTML = await generateGovernorList();                                    //moved into the render() to ensure that when the change events occur, the page is updated with the relevant data.
-    const colonyMineralsHTML = await generateColonyMineral()
-    const facilitiesListHTML = await getFacilitiesList()
-    const facilityMineralsHTML = await getFacilityMineralList()
-    const shoppingCartHTML = await generateShoppingCart()
-    const purchaseButton = generatePurchaseButton()
+  const governorListHTML = await generateGovernorList();                                    //moved into the render() to ensure that when the change events occur, the page is updated with the relevant data.
+  const colonyMineralsHTML = await generateColonyMineral()
+  const facilitiesListHTML = await getFacilitiesList()
+  const facilityMineralsHTML = await getFacilityMineralList()
+  const shoppingCartHTML = await generateShoppingCart()
+  const purchaseButton = generatePurchaseButton()
+  const govImgHTML = generateGovImage()
+  const facilityImgHTML = generateFacilityImage()
 
 
-    const compositeHTML =
-        `<h1 id="title">Solar System Mining Marketplace</h1>
+  const compositeHTML =
+    `
+    <h1 id="title">Solar System Mining Marketplace</h1>
       <section class="choices">
-        <article class="choices_gov options">
-            <h5>Choose a governor:</h5>
-            ${governorListHTML}
-        </article>
+      <article class="choices_gov options">
+        <h5>Choose a governor:</h5>
+        ${governorListHTML}
+        ${govImgHTML}
+      </article>
         <article class="colonies_list options">
-            ${colonyMineralsHTML}
+        ${colonyMineralsHTML}
         </article>
         <article class="choices_facility options">
             <h5>Choose a facility:</h5>
             ${facilitiesListHTML}
+            ${facilityImgHTML}
         </article>
-      </section>
-
-      <section class="display__images">
-        <div id="gov__img"></div>
-        <div id="facility__img"></div>
-      </section>
-
-      <section class="display">
+        </section>
+        
+        <section class="display__images">
+        </section>
+        
+        <section class="display">
         <article class="choices_mineral options">
-            ${facilityMineralsHTML}
+        ${facilityMineralsHTML}
         </article>
         <article class="cart">
             <h3>Space Cart</h3>
@@ -47,14 +51,15 @@ const render = async () => {
             ${purchaseButton}
         </article>
       </section>
-    `
-    mainContainerElement.innerHTML = compositeHTML
+`
+
+  mainContainerElement.innerHTML = compositeHTML
 
 }
 
 document.addEventListener("stateChanged", event => {
-    console.log("State of data has changed. Regenerating HTML...")
-    render()
+  console.log("State of data has changed. Regenerating HTML...")
+  render()
 })
 
 render()

@@ -55,22 +55,26 @@
     {
       "id": 1,
       "name": "Titan",
-      "activestatus": true
+      "activestatus": true,
+      "avatar": "./images/facilities/titan.png"
     },
     {
       "id": 2,
       "name": "Callisto",
-      "activestatus": true
+      "activestatus": true,
+      "avatar": "./images/facilities/callisto.png"
     },
     {
       "id": 3,
       "name": "Oberon",
-      "activestatus": true
+      "activestatus": true,
+      "avatar": "./images/facilities/oberon.png"
     },
     {
       "id": 4,
       "name": "Amalthea",
-      "activestatus": true
+      "activestatus": true,
+      "avatar": "./images/facilities/amalthea.png"
     }
   ],
   "governors": [
@@ -78,43 +82,49 @@
       "id": 1,
       "name": "Emma Rodriguez",
       "activestatus": true,
-      "colonyId": 6
+      "colonyId": 6,
+      "avatar": "./images/govs/jupiter.png"
     },
     {
       "id": 2,
       "name": "Liam Thompson",
       "activestatus": true,
-      "colonyId": 5
+      "colonyId": 5,
+      "avatar": "./images/govs/saturn.png"
     },
     {
       "id": 3,
       "name": "Olivia Chen",
       "activestatus": true,
-      "colonyId": 4
+      "colonyId": 4,
+      "avatar": "./images/govs/mercury.png"
     },
     {
       "id": 4,
       "name": "Noah Patel",
       "activestatus": true,
-      "colonyId": 3
+      "colonyId": 3,
+      "avatar": "./images/govs/venus.png"
     },
     {
       "id": 5,
       "name": "Sophia Nakamura",
       "activestatus": true,
-      "colonyId": 2
+      "colonyId": 2,
+      "avatar": "./images/govs/mars.png"
     },
     {
       "id": 6,
       "name": "Ethan Blackwell",
       "activestatus": true,
-      "colonyId": 1
+      "colonyId": 1,
+      "avatar": "./images/govs/earth.png"
     }
   ],
   "facilityMinerals": [
     {
       "id": 1,
-      "quantity": 5,
+      "quantity": 13,
       "mineralId": 2,
       "facilityId": 3
     },
@@ -126,7 +136,7 @@
     },
     {
       "id": 3,
-      "quantity": 7,
+      "quantity": 3,
       "mineralId": 1,
       "facilityId": 2
     },
@@ -138,7 +148,7 @@
     },
     {
       "id": 5,
-      "quantity": 6,
+      "quantity": 2,
       "mineralId": 6,
       "facilityId": 4
     },
@@ -152,7 +162,7 @@
   "colonyMinerals": [
     {
       "id": 1,
-      "quantity": 20,
+      "quantity": 21,
       "colonyId": 6,
       "mineralId": 2
     },
@@ -176,7 +186,7 @@
     },
     {
       "id": 5,
-      "quantity": 12,
+      "quantity": 14,
       "colonyId": 1,
       "mineralId": 6
     },
@@ -194,33 +204,33 @@
     },
     {
       "id": 8,
-      "quantity": 5,
+      "quantity": 6,
       "colonyId": 5,
       "mineralId": 2
-    },
-    {
-      "id": 9,
-      "quantity": 3,
-      "colonyId": 6,
-      "mineralId": 5
-    },
-    {
-      "id": 10,
-      "quantity": 11,
-      "colonyId": 6,
-      "mineralId": 1
     },
     {
       "quantity": 1,
       "colonyId": 6,
       "mineralId": 4,
-      "id": 11
+      "id": 9
+    },
+    {
+      "id": 10,
+      "quantity": 2,
+      "colonyId": 6,
+      "mineralId": 1
     },
     {
       "quantity": 1,
-      "colonyId": 6,
-      "mineralId": 6,
-      "id": 12
+      "colonyId": 4,
+      "mineralId": 2,
+      "id": 11
+    },
+    {
+      "id": 12,
+      "quantity": 2,
+      "colonyId": 5,
+      "mineralId": 1
     }
   ]
 }

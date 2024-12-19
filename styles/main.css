@@ -21,18 +21,27 @@ body {
     margin: 50px;
     padding: 50px;
     border: 1px dashed #7df222;
+    border-radius: 10px;
+    box-shadow: 0 0 30px #7df222;
+    justify-items: center;
 }
 
 .colonies_list {
     border: 1px dashed #7df222;
     padding: 50px;
     margin: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 30px #7df222;
+    justify-items: center;
 }
 
 .cart {
     margin: 50px;
     padding: 50px;
     border: 1px dashed #7df222;
+    border-radius: 10px;
+    box-shadow: 0 0 30px #7df222;
+    justify-items: center;
 }
 
 #purchasebutton {
@@ -51,4 +60,20 @@ body {
     background: black;
     color: #7df222;
     box-shadow: 0 0 20px #7df222;
+}
+
+#gov__img {
+    max-width: 400px;
+    max-height: 200px;
+    box-shadow: 0 0 30px #7df222;
+    border-radius: 10px;
+    border: 5px solid black;
+}
+
+#facility__img {
+    max-height: 200px;
+    max-width: 400px;
+    box-shadow: 0 0 30px #7df222;
+    border-radius: 10px;
+    border: 5px solid black;
 }

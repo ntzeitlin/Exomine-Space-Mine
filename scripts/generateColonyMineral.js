@@ -5,8 +5,8 @@ export const generateColonyMineral = async () => {
     const colonyMinerals = await getData("colonyMinerals?_expand=mineral&_expand=colony");
     let headerHTML = `<h2>Colony Minerals: </h2>`
     let colonyMineralsHTML = "<ul>"
-
-    if(transientState.get("governorId") > 0 ){
+    console.log(transientState)
+    if (transientState.get("governorId") > 0) {
         const colonyMineralsArray = colonyMinerals.filter(
             (colonyMineral) => {
                 return colonyMineral.colonyId != 0 && colonyMineral.colonyId === transientState.get("colonyId") && colonyMineral.quantity > 0
@@ -17,19 +17,10 @@ export const generateColonyMineral = async () => {
         })
         colonyMineralsHTML += "</ul>"
         colonyMineralsHTML += colonyMineralsArray.join("")
-    
+
         return `${headerHTML} ${colonyMineralsHTML}`
-    } else {
+    } else if (transientState.get("governorId") === 0) {
         return headerHTML
+
     }
-
-
-
-
-
-   
-    
-
-  
-
 }

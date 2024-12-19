@@ -4,7 +4,7 @@ import { getData } from "./Data.js"
 export const transientState = new Map()
 
 // function to set all transient state properties
-const resetTransientState = () => {
+export const resetTransientState = () => {
     transientState.set("id", 0)
     transientState.set("governorId", 0)
     transientState.set("colonyId", 0)
@@ -118,7 +118,6 @@ export const purchaseMineral = async () => {
         // POST to database
         const postColonyURL = "http://localhost:8088/colonyminerals/"
         postData(colonyMineralDataPOST, postColonyURL)
-
         const putFacilityURL = `http://localhost:8088/facilityminerals/${currentFacilityMineral.id}`
         putData(facilityMineralDataPUT, putFacilityURL)
     }

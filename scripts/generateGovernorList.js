@@ -1,23 +1,20 @@
 import { getData } from "./Data.js"
-import { transientState, setTransientState } from "./TransientState.js";
+import { transientState, setTransientState, resetTransientState } from "./TransientState.js";
 
 const handleGovernorChange = async (governorSelectedChangeEvent) => {
     if (governorSelectedChangeEvent.target.id === "governor" && governorSelectedChangeEvent.target.value != 0) {
         const convertedToInteger = parseInt(governorSelectedChangeEvent.target.value)
         const currentGovColonyId = await getData("governors")
         const foundGov = currentGovColonyId.find((governor) => parseInt(governor.id) === convertedToInteger)
-
         setTransientState("governorId", convertedToInteger)
         setTransientState("colonyId", foundGov.colonyId)
-
-        document.getElementById('facility').removeAttribute("disabled")
+    } else if (governorSelectedChangeEvent.target.id === "governor" && governorSelectedChangeEvent.target.value === 0) {
+        resetTransientState()
     }
 }
 
 export const generateGovernorList = async () => {
     const govData = await getData("governors");
-
-
     let govListHTML = ""
 
     govListHTML += '<select id="governor">'
@@ -27,8 +24,7 @@ export const generateGovernorList = async () => {
         .filter((governor) => governor.activestatus === true)
         .map((governor) => {
             if (governor.id === transientState.get("governorId")) {
-                let govimgelement = document.getElementById("gov__img")
-                govimgelement.innerHTML = `<img src="./images/govs/earth.png"></img>`
+
                 return `<option value="${governor.id}"  selected>${governor.name}</option>`
             }
             return `<option value="${governor.id}">${governor.name}</option>`
