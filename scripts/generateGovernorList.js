@@ -4,7 +4,7 @@ import{ render } from "./main.js"
 
 const handleGovernorChange = async (governorSelectedChangeEvent) => {
     let govSelectedValue = parseInt(governorSelectedChangeEvent.target.value)
-    
+
     if (governorSelectedChangeEvent.target.id === "governor" && governorSelectedChangeEvent.target.value != 0) {
         const convertedToInteger = parseInt(governorSelectedChangeEvent.target.value)
         const currentGovColonyId = await getData("governors")
@@ -16,15 +16,6 @@ const handleGovernorChange = async (governorSelectedChangeEvent) => {
         resetTransientState()
     }
 }
-
-const handleGovernorChangeToZero = async (governorSelectedChangedToZeroEvent) => {
-    if(governorSelectedChangedToZeroEvent.target.id === "governor" && governorSelectedChangedToZeroEvent.target.value === 0){
-        resetTransientState()
-        render()
-        console.log(transientState)
-    }
-}
-
 export const generateGovernorList = async () => {
     const govData = await getData("governors");
     let govListHTML = ""
@@ -47,6 +38,5 @@ export const generateGovernorList = async () => {
     govListHTML += "</select>"
 
     document.addEventListener("change", handleGovernorChange)
-    //document.addEventListener("change", handleGovernorChangeToZero)
     return govListHTML
 }
