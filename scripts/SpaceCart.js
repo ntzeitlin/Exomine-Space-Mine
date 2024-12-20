@@ -4,6 +4,7 @@ import { transientState } from "./TransientState.js"
 export const generateShoppingCart = async () => {
     const mineralData = await getData("minerals")
     const facilityData = await getData("facilities")
+    const colonyData = await getData("colonies")
     const shoppingCart = transientState.get("shoppingCartItems")
     // const stateOfMinerals = shoppingCartSet //transientState.get("mineralId")
     // const stateOfFacility = transientState.get("facilityId")
@@ -18,9 +19,10 @@ export const generateShoppingCart = async () => {
         const targetMineral = mineralData.find(({ id: mineralId }) => item.mineralId=== mineralId)
         // console.log(targetMineral)
         const targetFacility = facilityData.find(({ id: facilityId }) => item.facilityId === facilityId)
+        const targetColony = colonyData.find(({ id: colonyId }) => item.colonyId === colonyId)
         // console.log(targetFacility)
 
-        shoppingCartHTML += `<p>1 ton of ${targetMineral.name} from ${targetFacility.name}</p>`
+        shoppingCartHTML += `<p>1 ton of ${targetMineral.name} from ${targetFacility.name} for ${targetColony.name}</p>`
 
         // if (item.facilityId != 0 && item.mineralId != 0) {
         // } else {
