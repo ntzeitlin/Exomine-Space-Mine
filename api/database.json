@@ -87,7 +87,7 @@
     },
     {
       "id": 2,
-      "name": "Liam Thompson",
+      "name": "Lily Thompson",
       "activestatus": true,
       "colonyId": 5,
       "avatar": "./images/govs/saturn.png"
@@ -101,7 +101,7 @@
     },
     {
       "id": 4,
-      "name": "Noah Patel",
+      "name": "Harper Bennett",
       "activestatus": true,
       "colonyId": 3,
       "avatar": "./images/govs/venus.png"
@@ -115,7 +115,7 @@
     },
     {
       "id": 6,
-      "name": "Ethan Blackwell",
+      "name": "Zoe Anderson",
       "activestatus": true,
       "colonyId": 1,
       "avatar": "./images/govs/earth.png"
@@ -124,37 +124,37 @@
   "facilityMinerals": [
     {
       "id": 1,
-      "quantity": 11,
+      "quantity": 90,
       "mineralId": 2,
       "facilityId": 3
     },
     {
       "id": 2,
-      "quantity": 7,
+      "quantity": 70,
       "mineralId": 4,
       "facilityId": 1
     },
     {
       "id": 3,
-      "quantity": 2,
+      "quantity": 20,
       "mineralId": 1,
       "facilityId": 2
     },
     {
       "id": 4,
-      "quantity": 8,
+      "quantity": 80,
       "mineralId": 3,
       "facilityId": 3
     },
     {
       "id": 5,
-      "quantity": 2,
+      "quantity": 30,
       "mineralId": 6,
       "facilityId": 4
     },
     {
       "id": 6,
-      "quantity": 0,
+      "quantity": 3,
       "mineralId": 5,
       "facilityId": 3
     }
@@ -204,7 +204,7 @@
     },
     {
       "id": 8,
-      "quantity": 6,
+      "quantity": 7,
       "colonyId": 5,
       "mineralId": 2
     },
@@ -240,9 +240,15 @@
     },
     {
       "id": 14,
-      "quantity": 2,
+      "quantity": 3,
       "colonyId": 2,
       "mineralId": 2
+    },
+    {
+      "quantity": 1,
+      "colonyId": 3,
+      "mineralId": 6,
+      "id": 15
     }
   ]
 }

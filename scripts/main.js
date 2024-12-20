@@ -23,30 +23,31 @@ export const render = async () => {
     `
     <h1 id="title">Solar System Mining Marketplace</h1>
       <section class="choices">
-      <article class="choices_gov options">
-        <h5>Choose a governor:</h5>
-        ${governorListHTML}
-        ${govImgHTML}
-      </article>
+        <article class="choices_gov options">
+          <h4>Choose a governor:</h4>
+            ${governorListHTML}
+        </article>
+        <div>
+          ${govImgHTML}
+        </div>
         <article class="colonies_list options">
-        ${colonyMineralsHTML}
+          ${colonyMineralsHTML}
         </article>
         <article class="choices_facility options">
-            <h5>Choose a facility:</h5>
-            ${facilitiesListHTML}
-            ${facilityImgHTML}
+          <h4>Choose a facility:</h4>
+            ${facilitiesListHTML}    
         </article>
-        </section>
+        <div>
+          ${facilityImgHTML}
+        </div>
+      </section>
         
-        <section class="display__images">
-        </section>
-        
-        <section class="display">
+      <section class="display">
         <article class="choices_mineral options">
-        ${facilityMineralsHTML}
+          ${facilityMineralsHTML}
         </article>
         <article class="cart">
-            <h3>Space Cart</h3>
+          <h3>Space Cart</h3>
             ${shoppingCartHTML}
             ${purchaseButton}
         </article>
