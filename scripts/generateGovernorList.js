@@ -1,6 +1,5 @@
 import { getData } from "./Data.js"
-import { transientState, setTransientState, resetTransientState } from "./TransientState.js";
-import{ render } from "./main.js"
+import { transientState, setTransientState, resetTransientState, shoppingCartSet} from "./TransientState.js";
 
 const handleGovernorChange = async (governorSelectedChangeEvent) => {
     let govSelectedValue = parseInt(governorSelectedChangeEvent.target.value)
@@ -12,8 +11,9 @@ const handleGovernorChange = async (governorSelectedChangeEvent) => {
         setTransientState("governorId", convertedToInteger)
         setTransientState("colonyId", foundGov.colonyId)
     } else if (governorSelectedChangeEvent.target.id === "governor" && govSelectedValue=== 0) {
-        console.log(governorSelectedChangeEvent.target.value)
+        // console.log(governorSelectedChangeEvent.target.value)
         resetTransientState()
+        shoppingCartSet.clear()
     }
 }
 export const generateGovernorList = async () => {
