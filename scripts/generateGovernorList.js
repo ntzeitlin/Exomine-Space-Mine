@@ -12,7 +12,7 @@ const handleGovernorChange = async (governorSelectedChangeEvent) => {
         setTransientState("governorId", convertedToInteger)
         setTransientState("colonyId", foundGov.colonyId)
     } else if (governorSelectedChangeEvent.target.id === "governor" && govSelectedValue=== 0) {
-        console.log(governorSelectedChangeEvent.target.value)
+        // console.log(governorSelectedChangeEvent.target.value)
         resetTransientState()
     }
 }

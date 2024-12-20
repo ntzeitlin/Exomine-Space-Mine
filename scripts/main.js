@@ -5,6 +5,7 @@ import { generateGovernorList } from "./generateGovernorList.js"
 import { generateFacilityImage, generateGovImage } from "./generateImages.js"
 import { generatePurchaseButton } from "./PurchaseButton.js"
 import { generateShoppingCart } from "./SpaceCart.js"
+import { addToCartButton } from "./AddToCartButton.js"
 
 const mainContainerElement = document.querySelector("#container")
 
@@ -17,6 +18,7 @@ export const render = async () => {
   const purchaseButton = generatePurchaseButton()
   const govImgHTML = generateGovImage()
   const facilityImgHTML = generateFacilityImage()
+  const addToCartButtonHTML = addToCartButton()
 
 
   const compositeHTML =
@@ -45,9 +47,10 @@ export const render = async () => {
       <section class="display">
         <article class="choices_mineral options">
           ${facilityMineralsHTML}
+          ${addToCartButtonHTML}
         </article>
         <article class="cart">
-          <h3>Space Cart</h3>
+          <h2>Space Cart</h2>
             ${shoppingCartHTML}
             ${purchaseButton}
         </article>

@@ -31,6 +31,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 30px #7df222;
     justify-items: center;
+    width: 500px;
 }
 
 .colonies_list {
@@ -55,6 +56,16 @@ body {
     color: #7df222;
     background: black;
     box-shadow: 0 0 20px #7df222;
+    padding: 5px;
+    margin: 20px;
+}
+
+#addToCartButton {
+    color: #7df222;
+    background: black;
+    box-shadow: 0 0 20px #7df222;
+    padding: 5px;
+    margin: 20px;
 }
 
 #governor {

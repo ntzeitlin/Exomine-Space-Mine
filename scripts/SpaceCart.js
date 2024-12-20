@@ -4,14 +4,29 @@ import { transientState } from "./TransientState.js"
 export const generateShoppingCart = async () => {
     const mineralData = await getData("minerals")
     const facilityData = await getData("facilities")
-    const stateOfMinerals = transientState.get("mineralId")
-    const stateOfFacility = transientState.get("facilityId")
+    const shoppingCart = transientState.get("shoppingCartItems")
+    // const stateOfMinerals = shoppingCartSet //transientState.get("mineralId")
+    // const stateOfFacility = transientState.get("facilityId")
 
-    if (stateOfMinerals != 0 && stateOfFacility != 0) {
-        const targetMineral = mineralData.find(({ id: mineralId }) => stateOfMinerals === mineralId)
-        const targetFacility = facilityData.find(({ id: facilityId }) => stateOfFacility === facilityId)
-        return `<p>1 ton of ${targetMineral.name} from ${targetFacility.name}</p>`
-    } else {
-        return ""
+    console.log("shoppingCart", shoppingCart)
+    let shoppingCartHTML = ""
+
+    for (const item of shoppingCart) {      
+        // console.log("item.facilityId", typeof item.facilityId)
+        // console.log("item.mineralId", typeof item.mineralId) 
+        // console.log("item", item)
+        const targetMineral = mineralData.find(({ id: mineralId }) => item.mineralId=== mineralId)
+        // console.log(targetMineral)
+        const targetFacility = facilityData.find(({ id: facilityId }) => item.facilityId === facilityId)
+        // console.log(targetFacility)
+
+        shoppingCartHTML += `<p>1 ton of ${targetMineral.name} from ${targetFacility.name}</p>`
+
+        // if (item.facilityId != 0 && item.mineralId != 0) {
+        // } else {
+        //     return ""
+        // }
     }
+
+    return shoppingCartHTML
 }
