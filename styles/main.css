@@ -4,9 +4,16 @@ body {
     background: black;
 }
 
+#title {
+    font-size: 40px;
+    margin-left: 1em;
+}
+
 .choices {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    padding-left: 1em;
+    padding-right: 1em;
 }
 
 .options {
@@ -20,19 +27,28 @@ body {
 .choices_mineral {
     margin: 50px;
     padding: 50px;
-    border: 1px dashed #7df222;
+    border: 1px solid #7df222;
+    border-radius: 10px;
+    box-shadow: 0 0 30px #7df222;
+    justify-items: center;
 }
 
 .colonies_list {
-    border: 1px dashed #7df222;
+    border: 1px solid #7df222;
     padding: 50px;
     margin: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 30px #7df222;
+    justify-items: center;
 }
 
 .cart {
     margin: 50px;
     padding: 50px;
-    border: 1px dashed #7df222;
+    border: 1px solid #7df222;
+    border-radius: 10px;
+    box-shadow: 0 0 30px #7df222;
+    justify-items: center;
 }
 
 #purchasebutton {
@@ -51,4 +67,20 @@ body {
     background: black;
     color: #7df222;
     box-shadow: 0 0 20px #7df222;
+}
+
+#gov__img {
+    max-width: 400px;
+    max-height: 200px;
+    box-shadow: 0 0 30px #7df222;
+    border-radius: 10px;
+    border: 3px solid black;
+}
+
+#facility__img {
+    max-height: 250px;
+    max-width: 400px;
+    box-shadow: 0 0 30px #7df222;
+    border-radius: 10px;
+    border: 3px solid black;
 }
