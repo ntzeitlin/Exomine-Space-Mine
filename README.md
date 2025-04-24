@@ -1,10 +1,27 @@
-# Exomine
+# Exomine Project Description:
 
 This project has you building an application that lets governors of different colonies in our Solar System purchase minerals from various mining facilities that human have established.
 
 > "This project has made me realize the importance of an ERD and quality design of your data structure and how to access that data."
 >   - Former NSS Student
 
+## Implementation:
+
+![exomine_screenshot](https://github.com/user-attachments/assets/9072c3bb-719d-4d95-b2f6-9ddbaf004b19)
+
+## Features:
+- Complete Implementation of Project Goals including Stretch Goals
+- Animated Meteorites
+- Custom Images for Governors and Colonies
+
+## To run locally:
+- clone repository
+- In terminal, cd to project folder, then: 
+- from the api folder run `json-server database.json -p 8088`
+- from the project folder run `serve`
+
+
+# Project Goals:
 ## Professional Collaboration
 
 In this project, you are expected to start building your professional collaboration skills by writing issue tickets and having professional pull requests. During your wireframing and algorithmic thinking design process, you are going to be creating tickets for your efforts.
